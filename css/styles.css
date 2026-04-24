@@ -53,11 +53,54 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: 10;
-    padding: 15px 0;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 1000;
+    padding: 18px 0;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+}
+
+.top-nav nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-toggle {
+    display: none;
+    appearance: none;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 10px;
+    color: white;
+}
+
+.nav-toggle span,
+.nav-toggle span::before,
+.nav-toggle span::after {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: white;
+    position: relative;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.nav-toggle span::before,
+.nav-toggle span::after {
+    content: '';
+    position: absolute;
+    left: 0;
+}
+
+.nav-toggle span::before {
+    top: -7px;
+}
+
+.nav-toggle span::after {
+    top: 7px;
 }
 
 .nav-menu {
@@ -67,11 +110,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
+    gap: 32px;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    overflow-x: auto;
 }
 
 .nav-menu li {
-    margin: 0 20px;
+    margin: 0;
 }
 
 .nav-menu a {
@@ -79,36 +125,62 @@ body {
     text-decoration: none;
     font-size: 18px;
     font-weight: bold;
-    padding: 5px 10px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    padding: 10px 14px;
+    transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
 }
 
-.nav-menu a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: #f0f0f0;
-    border-radius: 4px;
+.nav-menu a:hover,
+.nav-menu a:focus {
+    background-color: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    border-radius: 6px;
+    transform: translateY(-1px);
 }
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
-    .nav-menu {
-        flex-direction: column;
+    .top-nav {
+        padding: 12px 16px;
+        display: flex;
         align-items: center;
+        justify-content: space-between;
     }
-    
+
+    .nav-toggle {
+        display: inline-flex;
+    }
+
+    .top-nav nav {
+        width: 100%;
+        display: none;
+    }
+
+    .top-nav.menu-open nav {
+        display: block;
+    }
+
+    .nav-menu {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        width: 100%;
+        margin-top: 12px;
+        padding: 0;
+    }
+
     .nav-menu li {
-        margin: 5px 0;
+        margin: 0;
     }
-    
+
     .nav-menu a {
         font-size: 16px;
-        padding: 8px 15px;
-    }
-    
-    .top-nav {
-        padding: 10px 0;
+        padding: 12px 16px;
+        display: block;
+        text-align: center;
     }
 }
+
 
 main {
     padding-top: 20px; /* Additional spacing */
